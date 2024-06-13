@@ -1,0 +1,30 @@
+query GetAiringSchedule($page: Int, $time: Int) {
+  Page(page: $page, perPage: 20) {
+    pageInfo {
+      hasNextPage
+    }
+    airingSchedules(notYetAired: true, sort: TIME, airingAt_lesser: $time) {
+      media {
+        title {
+          romaji
+          english
+          native
+        }
+        episodes
+        duration
+        coverImage {
+          large
+        }
+        bannerImage
+        siteUrl
+        externalLinks {
+          site
+          url
+        }
+      }
+      episode
+      airingAt
+      timeUntilAiring
+    }
+  }
+}
